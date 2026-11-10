@@ -1,4 +1,5 @@
 create database baitap_sql;
+
 create table if not exists "users"(
     "id" SERIAL primary key,
     "fullName" VARCHAR(255),
@@ -96,10 +97,6 @@ create table if not exists "like_res" (
 );
 
 
-
-
-
-
 INSERT into "users" ("fullName", "email", "password") VALUES
 					('Phan Minh', 'minh@gmail.com', '123'),
 					('Minh Tuan', 'tuan@gmail.com', '123'),
@@ -145,7 +142,6 @@ INSERT INTO "rate_res" ("userId", "resId", "amount") VALUES
 						(2, 2, 4),
 						(3, 1, 5);
 
-
 INSERT INTO "orders" ("userId", "foodId", "amount") VALUES
 						(2, 1, 1),
 						(2, 2, 2),
@@ -155,7 +151,6 @@ INSERT INTO "orders" ("userId", "foodId", "amount") VALUES
 						(1, 2, 1),
 						(3, 2, 1),
 						(4, 4, 1);
-
 
 
 SELECT "userId", "users"."id", "email", "fullName", COUNT("userId") AS "So lan like"
@@ -188,7 +183,7 @@ HAVING COUNT("orders"."userId") = (
 );
 
 
-SELECT "users"."id", "users"."fullName", "users"."email"
+SELECT *
 FROM "users"
 LEFT JOIN "orders" ON "orders"."userId" = "users"."id"
 LEFT JOIN "like_res" ON "like_res"."userId" = "users"."id"
